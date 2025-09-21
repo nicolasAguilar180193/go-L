@@ -2,11 +2,14 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/nicolasAguilar180193/go-L/cmd/api/handlers/player"
-	playerSrv "github.com/nicolasAguilar180193/go-L/internal/services/player"
+	"github.com/nicolasAguilar180193/go-L/internal/repositories/mongo"
+	playerMongo "github.com/nicolasAguilar180193/go-L/internal/repositories/mongo/player"
+	playerService "github.com/nicolasAguilar180193/go-L/internal/services/player"
 )
 
 func main() {
@@ -17,10 +20,21 @@ func main() {
 
 	ginEngine := gin.Default()
 
-	playerService := playerSrv.Service{}
+	mongoClient, err := mongo.ConnectClient(os.Getenv("MONGODB_URI"))
+	if err != nil {
+		log.Fatalf("Error connecting to MongoDB: %v", err)
+	}
+
+	playerRepo := playerMongo.Repository{
+		Client: mongoClient,
+	}
+
+	playerSrv := playerService.Service{
+		Repository: playerRepo,
+	}
 
 	playerHandler := player.Handler{
-		PlayerService: playerService,
+		PlayerService: playerSrv,
 	}
 
 	ginEngine.POST("/players", playerHandler.Create)

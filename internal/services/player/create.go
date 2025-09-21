@@ -1,37 +1,30 @@
 package player
 
 import (
-	"context"
+	"fmt"
 	"log"
-	"os"
 	"time"
 
 	"github.com/nicolasAguilar180193/go-L/internal/domain"
-	"go.mongodb.org/mongo-driver/v2/mongo"
-	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
+
+// pasos:
+// 1. Set createdAt
+// 2. Save to repository
+// 3. Return ID of created player
 
 func (s Service) Create(player domain.Player) (id any, err error) {
 	player.CreatedAt = time.Now().UTC()
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	// ========================================================
 
-	client, err := mongo.Connect(options.Client().ApplyURI(os.Getenv("MONGODB_URI")))
+	insertedID, err := s.Repository.Insert(player)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Error saving player:", err.Error())
+		return nil, fmt.Errorf("error saving player: %w", err)
 	}
 
-	err = client.Ping(ctx, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// ========================================================
 
-	collection := client.Database("go-l").Collection("players")
-	insertResult, err := collection.InsertOne(ctx, player)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return insertResult.InsertedID, nil
+	return insertedID, nil
 }

@@ -7,9 +7,31 @@ Introducing "GO-L", a cutting-edge RESTful API backend, meticulously crafted wit
 ## Init
 
 ```bash
+# Copy .env
+cp .env.example .env
+
 # Install
 go mod tidy
 
 # Run
 go run cmd/api/main.go
+```
+
+## Use mongodb linux
+
+```bash
+# Execute shell
+mongosh
+
+# show data bases
+show dbs
+
+# select go-l db
+use go-l
+
+# show collections
+show colecttions
+
+# Get documents
+db.players.find()
 ```

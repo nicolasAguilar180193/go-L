@@ -1,5 +1,7 @@
 package player
 
+import "github.com/nicolasAguilar180193/go-L/internal/ports"
+
 type Service struct {
-	// Add any dependencies like repositories here
+	Repository ports.PlayerRepository
 }
