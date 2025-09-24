@@ -41,5 +41,7 @@ func main() {
 
 	ginEngine.GET("/players/:id", playerHandler.Get)
 
+	ginEngine.DELETE("/players/:id", playerHandler.Delete)
+
 	log.Fatalln(ginEngine.Run(":8001"))
 }
