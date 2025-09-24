@@ -13,7 +13,7 @@ import (
 // 2. Save to repository
 // 3. Return ID of created player
 
-func (s Service) Create(player domain.Player) (id any, err error) {
+func (s *Service) Create(player domain.Player) (id any, err error) {
 	now := time.Now().UTC()
 	player.CreatedAt = &now
 

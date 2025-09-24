@@ -3,11 +3,18 @@ package player
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func (r Repository) Insert(player domain.Player) (id any, err error) {
+func (r *Repository) Insert(player domain.Player) (id any, err error) {
+	objID := primitive.NewObjectID()
+	player.ID = objID
+	now := time.Now()
+	player.CreatedAt = &now
+	player.UpdatedAt = &now
 
 	collection := r.Client.Database("go-l").Collection("players")
 	insertResult, err := collection.InsertOne(context.Background(), player)

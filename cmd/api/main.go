@@ -25,19 +25,21 @@ func main() {
 		log.Fatalf("Error connecting to MongoDB: %v", err)
 	}
 
-	playerRepo := playerMongo.Repository{
+	playerRepo := &playerMongo.Repository{
 		Client: mongoClient,
 	}
 
-	playerSrv := playerService.Service{
+	playerSrv := &playerService.Service{
 		Repository: playerRepo,
 	}
 
-	playerHandler := player.Handler{
+	playerHandler := &player.Handler{
 		PlayerService: playerSrv,
 	}
 
 	ginEngine.POST("/players", playerHandler.Create)
+
+	ginEngine.GET("/players/:id", playerHandler.Get)
 
 	log.Fatalln(ginEngine.Run(":8001"))
 }

@@ -29,5 +29,5 @@ func (h *Handler) Create(c *gin.Context) {
 
 	// ===========================================
 
-	c.JSON(http.StatusCreated, gin.H{"player": playerCreateParams, "insertedID": insertResultID})
+	c.JSON(http.StatusCreated, gin.H{"insertedID": insertResultID})
 }
