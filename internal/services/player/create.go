@@ -14,7 +14,8 @@ import (
 // 3. Return ID of created player
 
 func (s Service) Create(player domain.Player) (id any, err error) {
-	player.CreatedAt = time.Now().UTC()
+	now := time.Now().UTC()
+	player.CreatedAt = &now
 
 	// ========================================================
 
