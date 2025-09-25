@@ -9,9 +9,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func (r *Repository) Insert(player domain.Player) (id any, err error) {
-	objID := primitive.NewObjectID()
-	player.ID = objID
+func (r *Repository) Insert(player *domain.Player) (id any, err error) {
+	player.ID = primitive.NewObjectID()
 	now := time.Now()
 	player.CreatedAt = &now
 	player.UpdatedAt = &now

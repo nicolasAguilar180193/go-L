@@ -21,7 +21,7 @@ func (h *Handler) Create(c *gin.Context) {
 
 	// ===========================================
 
-	insertResultID, err := h.PlayerService.Create(playerCreateParams)
+	insertResultID, err := h.PlayerService.Create(&playerCreateParams)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "oops! something went wrong :("})
 		return
