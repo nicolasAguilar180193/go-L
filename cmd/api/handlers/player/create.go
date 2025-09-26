@@ -1,10 +1,10 @@
 package player
 
 import (
-	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/nicolasAguilar180193/go-L/cmd/api/core"
 	"github.com/nicolasAguilar180193/go-L/internal/domain"
 )
 
@@ -20,22 +20,11 @@ func (h *Handler) Create(c *gin.Context) {
 		return
 	}
 
-	// ===========================================
-
 	insertResultID, err := h.PlayerService.Create(&playerCreateParams)
 	if err != nil {
-		var appErr domain.AppError
-		if errors.As(err, &appErr) {
-			if appErr.Code == domain.ErrCodeDuplicateKey {
-				c.JSON(http.StatusConflict, appErr)
-				return
-			}
-		}
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "oops! something went wrong :("})
+		core.RespondError(c, err)
 		return
 	}
-
-	// ===========================================
 
 	c.JSON(http.StatusCreated, gin.H{"insertedID": insertResultID})
 }
