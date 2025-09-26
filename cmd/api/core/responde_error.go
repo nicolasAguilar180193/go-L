@@ -29,4 +29,5 @@ var ErrCodeMapping map[string]int = map[string]int{
 	domain.ErrCodeDuplicateKey:  http.StatusConflict,
 	domain.ErrCodeNotFound:      http.StatusNotFound,
 	domain.ErrCodeInvalidParams: http.StatusBadRequest,
+	domain.ErrCodeTimeout:       http.StatusRequestTimeout,
 }

@@ -12,7 +12,8 @@ import (
 )
 
 func (r *Repository) Insert(player *domain.Player) (id any, err error) {
-	player.ID = primitive.NewObjectID()
+	playerID := primitive.NewObjectID()
+	player.ID = playerID
 	now := time.Now()
 	player.CreatedAt = &now
 	player.UpdatedAt = &now
@@ -29,5 +30,7 @@ func (r *Repository) Insert(player *domain.Player) (id any, err error) {
 		return nil, fmt.Errorf("error inserting player: %w", err)
 	}
 
-	return insertResult.InsertedID, nil
+	log.Println("Inserted player with ID:", insertResult.InsertedID)
+
+	return playerID.Hex(), nil
 }

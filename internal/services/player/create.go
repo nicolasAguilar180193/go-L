@@ -24,10 +24,10 @@ func (s *Service) Create(player *domain.Player) (id any, err error) {
 	if err != nil {
 		if errors.Is(err, domain.ErrDuplicateKey) {
 			log.Println("Duplicate key error.")
-			appErr := domain.AppError{
-				Code: domain.ErrCodeDuplicateKey,
-				Msg:  "A player with the same unique field already exists",
-			}
+			appErr := domain.NewAppError(
+				domain.ErrCodeDuplicateKey,
+				"A player with the same unique field already exists",
+			)
 			return nil, appErr
 		}
 		log.Println(err.Error())
