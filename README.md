@@ -35,3 +35,22 @@ show colecttions
 # Get documents
 db.players.find()
 ```
+
+## Ejecutar Test unitarios
+
+```bash
+
+# 1. Cobertura básica:
+go test -cover ./...
+
+# 2. Generar perfil:
+go test -coverprofile=coverage.out ./...
+
+#3. Reporte HTML:
+go tool cover -html=coverage.out -o coverage.html
+```
+
+#### El reporte HTML te mostrará visualmente:
+- Verde: Líneas cubiertas por tests
+- Rojo: Líneas no cubiertas por tests  
+- Gris: Líneas no ejecutables (comentarios, declaraciones, etc.)

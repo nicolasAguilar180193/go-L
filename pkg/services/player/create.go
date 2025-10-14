@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"github.com/nicolasAguilar180193/go-L/pkg/domain"
 )
 
 // pasos:

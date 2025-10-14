@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/nicolasAguilar180193/go-L/cmd/api/core"
-	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"github.com/nicolasAguilar180193/go-L/pkg/domain"
 )
 
 // Objetivo de los handlers:

@@ -1,15 +1,15 @@
 package ports
 
-import "github.com/nicolasAguilar180193/go-L/internal/domain"
+import "github.com/nicolasAguilar180193/go-L/pkg/domain"
 
 type PlayerService interface {
-	Create(player *domain.Player) (id any, err error)
 	Get(id string) (player *domain.Player, err error)
+	Create(player *domain.Player) (id any, err error)
 	Delete(id string) (err error)
 }
 
 type PlayerRepository interface {
-	Insert(player *domain.Player) (id any, err error)
 	Get(id string) (player *domain.Player, err error)
+	Insert(player *domain.Player) (id any, err error)
 	Delete(id string) (err error)
 }

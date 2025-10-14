@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"github.com/nicolasAguilar180193/go-L/pkg/domain"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )

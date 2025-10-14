@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/nicolasAguilar180193/go-L/cmd/api/handlers/player"
-	"github.com/nicolasAguilar180193/go-L/internal/repositories/mongo"
-	playerMongo "github.com/nicolasAguilar180193/go-L/internal/repositories/mongo/player"
-	playerService "github.com/nicolasAguilar180193/go-L/internal/services/player"
+	"github.com/nicolasAguilar180193/go-L/pkg/repositories/mongo"
+	playerMongo "github.com/nicolasAguilar180193/go-L/pkg/repositories/mongo/player"
+	playerService "github.com/nicolasAguilar180193/go-L/pkg/services/player"
 )
 
 func main() {

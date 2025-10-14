@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"github.com/nicolasAguilar180193/go-L/pkg/domain"
 )
 
 const InternalServerErrorMessage = "Ooops! Something went wrong. Please help us by reporting this issue."

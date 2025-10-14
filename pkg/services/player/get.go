@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/nicolasAguilar180193/go-L/internal/domain"
+	"github.com/nicolasAguilar180193/go-L/pkg/domain"
 )
 
 func (s *Service) Get(id string) (player *domain.Player, err error) {
+
 	if id == "" {
 		return nil, fmt.Errorf("player ID is required")
 	}
+
 	player, err = s.Repository.Get(id)
 	if err != nil {
 		if errors.Is(err, domain.ErrNotFound) {
